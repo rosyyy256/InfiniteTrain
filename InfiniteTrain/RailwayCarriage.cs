@@ -14,14 +14,8 @@
 
         public void SwitchLights() => IsLightsOn = !IsLightsOn;
 
-        public void SetFrontCarriage(RailwayCarriage carriage)
-        {
-            FrontCarriage = carriage;
-        }
+        public void SetFrontCarriage(RailwayCarriage carriage) => FrontCarriage = carriage;
 
-        public void SetRearCarriage(RailwayCarriage carriage)
-        {
-            RearCarriage = carriage;
-        }
+        public void SetRearCarriage(RailwayCarriage carriage) => RearCarriage = carriage;
     }
 }

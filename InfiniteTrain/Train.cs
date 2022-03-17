@@ -4,19 +4,21 @@ namespace InfiniteTrain
 {
     public class Train
     {
-        public RailwayCarriage Carriage { get; private set; }
+        public RailwayCarriage Carriage { get; }
 
         public Train()
         {
             var startCarriage = new RailwayCarriage(GetRandomBool());
             var frontCarriage = new RailwayCarriage(GetRandomBool());
             var rearCarriage = new RailwayCarriage(GetRandomBool());
+            
             startCarriage.SetFrontCarriage(frontCarriage);
             startCarriage.SetRearCarriage(rearCarriage);
             frontCarriage.SetFrontCarriage(rearCarriage);
             frontCarriage.SetRearCarriage(startCarriage);
             rearCarriage.SetFrontCarriage(startCarriage);
             rearCarriage.SetRearCarriage(frontCarriage);
+            
             Carriage = startCarriage;
         }
 
@@ -28,8 +30,10 @@ namespace InfiniteTrain
             for (var i = 0; i < carriagesCount; i++)
             {
                 var currentCarriage = new RailwayCarriage(GetRandomBool());
+                
                 currentCarriage.SetFrontCarriage(Carriage.FrontCarriage);
                 currentCarriage.SetRearCarriage(Carriage);
+                
                 Carriage.FrontCarriage.SetRearCarriage(currentCarriage);
                 Carriage.SetFrontCarriage(currentCarriage);
             }
@@ -43,12 +47,15 @@ namespace InfiniteTrain
             while (true)
             {
                 var result = 0;
+                
                 while (!currentCarriage.FrontCarriage.IsLightsOn)
                 {
                     currentCarriage = currentCarriage.FrontCarriage;
                     result++;
                 }
+                
                 currentCarriage.FrontCarriage.SwitchLights();
+                
                 for (var i = 0; i < result; i++)
                 {
                     currentCarriage = currentCarriage.RearCarriage;
